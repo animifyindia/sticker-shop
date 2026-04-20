@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Anime Sticker Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #0f172a;
+      color: white;
+    }
+
+    header {
+      text-align: center;
+      padding: 15px;
+      background: black;
+      font-size: 22px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .order { background: #25D366; color: white; }
+    .pay { background: black; color: white; }
+
+    .form-box {
+      background: #020617;
+      padding: 15px;
+      margin: 15px;
+      border-radius: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      border-radius: 5px;
+      border: none;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>🔥 Anime Sticker Store 🔥</header>
+<p style="text-align:center;">💳 UPI: 9455104193@axl</p>
+
+<!-- PRODUCTS -->
+<div class="container">
+
+  <div class="card">
+    <img src="https://via.placeholder.com/200?text=Naruto">
+    <p>Naruto Sticker</p>
+    <p>₹99</p>
+    <button class="order" onclick="selectProduct('Naruto Sticker')">Select</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/200?text=Luffy">
+    <p>Luffy Sticker</p>
+    <p>₹119</p>
+    <button class="order" onclick="selectProduct('Luffy Sticker')">Select</button>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/200?text=Tanjiro">
+    <p>Tanjiro Sticker</p>
+    <p>₹109</p>
+    <button class="order" onclick="selectProduct('Tanjiro Sticker')">Select</button>
+  </div>
+
+</div>
+
+<!-- ORDER FORM -->
+<div class="form-box">
+  <h2>📝 Complete Order</h2>
+
+  <input type="text" id="name" placeholder="Your Name">
+  <input type="text" id="address" placeholder="Your Address">
+  <input type="text" id="product" placeholder="Selected Product" readonly>
+
+  <button onclick="sendOrder()">📦 Order on WhatsApp</button>
+</div>
+
+<script>
+function selectProduct(name) {
+  document.getElementById("product").value = name;
+}
+
+function sendOrder() {
+  let name = document.getElementById("name").value;
+  let address = document.getElementById("address").value;
+  let product = document.getElementById("product").value;
+
+  let message = "Order Details:%0A"
+    + "Name: " + name + "%0A"
+    + "Address: " + address + "%0A"
+    + "Product: " + product;
+
+  window.open("https://wa.me/919455104193?text=" + message);
+}
+</script>
+
+</body>
+</html>
