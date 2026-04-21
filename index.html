@@ -1,133 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Anime Sticker Store</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KC Stickers Shop</title>
 
-  <style>
-    body {
-      font-family: Arial;
-      margin: 0;
-      background: #0f172a;
-      color: white;
-    }
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+  background: #f5f5f5;
+}
 
-    header {
-      text-align: center;
-      padding: 15px;
-      background: black;
-      font-size: 22px;
-    }
+header {
+  background: black;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 22px;
+}
 
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      padding: 10px;
-    }
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
 
-    .card {
-      background: #1e293b;
-      border-radius: 10px;
-      padding: 10px;
-      text-align: center;
-    }
+.card {
+  background: white;
+  width: 220px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 10px;
+}
 
-    img {
-      width: 100%;
-      border-radius: 8px;
-    }
+.card img {
+  width: 100%;
+  border-radius: 10px;
+}
 
-    button {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+button {
+  border: none;
+  padding: 10px;
+  margin-top: 8px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-    .order { background: #25D366; color: white; }
-    .pay { background: black; color: white; }
+.buy {
+  background: green;
+  color: white;
+}
 
-    .form-box {
-      background: #020617;
-      padding: 15px;
-      margin: 15px;
-      border-radius: 10px;
-    }
+.pay {
+  background: orange;
+  color: white;
+}
+</style>
 
-    input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 8px;
-      border-radius: 5px;
-      border: none;
-    }
+<script>
+function orderNow(product, price) {
+  let name = prompt("Apna naam likho:");
+  let address = prompt("Apna address likho:");
 
-  </style>
+  if(name && address){
+    let msg = `Order:%0AProduct: ${product}%0APrice: ₹${price}%0AName: ${name}%0AAddress: ${address}`;
+    window.open(`https://wa.me/919455104193?text=${msg}`, "_blank");
+  } else {
+    alert("Details fill karo");
+  }
+}
+
+function payNow(price) {
+  let upi = "9455104193@axl"; // ✅ Teri UPI ID added
+  let link = `upi://pay?pa=${upi}&pn=KC Stickers&am=${price}&cu=INR`;
+  window.location.href = link;
+}
+</script>
+
 </head>
 
 <body>
 
-<header>🔥 Anime Sticker Store 🔥</header>
-<p style="text-align:center;">💳 UPI: 9455104193@axl</p>
+<header>KC Stickers Shop</header>
 
-<!-- PRODUCTS -->
 <div class="container">
 
+  <!-- PRODUCT 1 -->
   <div class="card">
-   <img src="https://i.imgur.com/3GvwNBf.png"> 
-    <p>Naruto Sticker</p>
-    <p>₹99</p>
-    <button class="order" onclick="selectProduct('Naruto Sticker')">Select</button>
+    <img src="https://via.placeholder.com/200">
+    <h3>Anime Sticker</h3>
+    <p>₹50</p>
+    <button class="buy" onclick="orderNow('Anime Sticker',50)">Order on WhatsApp</button>
+    <button class="pay" onclick="payNow(50)">Pay Now</button>
   </div>
 
+  <!-- PRODUCT 2 -->
   <div class="card">
-    <img src="https://i.imgur.com/3GvwNBf.png">
-    <p>Luffy Sticker</p>
-    <p>₹119</p>
-    <button class="order" onclick="selectProduct('Luffy Sticker')">Select</button>
-  </div>
-
-  <div class="card">
-    <img src="https://i.imgur.com/3GvwNBf.png">
-    <p>Tanjiro Sticker</p>
-    <p>₹109</p>
-    <button class="order" onclick="selectProduct('Tanjiro Sticker')">Select</button>
+    <img src="https://via.placeholder.com/200">
+    <h3>Cool Sticker</h3>
+    <p>₹70</p>
+    <button class="buy" onclick="orderNow('Cool Sticker',70)">Order on WhatsApp</button>
+    <button class="pay" onclick="payNow(70)">Pay Now</button>
   </div>
 
 </div>
-
-<!-- ORDER FORM -->
-<div class="form-box">
-  <h2>📝 Complete Order</h2>
-
-  <input type="text" id="name" placeholder="Your Name">
-  <input type="text" id="address" placeholder="Your Address">
-  <input type="text" id="product" placeholder="Selected Product" readonly>
-
-  <button onclick="sendOrder()">📦 Order on WhatsApp</button>
-</div>
-
-<script>
-function selectProduct(name) {
-  document.getElementById("product").value = name;
-}
-
-function sendOrder() {
-  let name = document.getElementById("name").value;
-  let address = document.getElementById("address").value;
-  let product = document.getElementById("product").value;
-
-  let message = "Order Details:%0A"
-    + "Name: " + name + "%0A"
-    + "Address: " + address + "%0A"
-    + "Product: " + product;
-
-  window.open("https://wa.me/919455104193?text=" + message);
-}
-</script>
 
 </body>
 </html>
